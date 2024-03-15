@@ -3,14 +3,32 @@
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Astro</title>
+  </head>
+  <body>
+    <button>Send Email</button>
+
+    <script>
+      document.querySelector("button")?.addEventListener("click", () => {
+        fetch("/api/sendEmail.json", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            from: "hoon@sociable.run",
+            to: "mrgravity817@gmail.com",
+            subject: "Sample Subject",
+            html: "<h1>Sample HTML</h1>",
+            text: "hi",
+          }),
+        });
+      });
+    </script>
+  </body>
 </html>
